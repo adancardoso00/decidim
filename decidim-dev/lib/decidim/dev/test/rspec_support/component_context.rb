@@ -123,6 +123,8 @@ shared_context "when publishing and unpublishing the component" do
   let(:job_exceptions) do
     [
       Decidim::MachineTranslationResourceJob,
+      Decidim::EmailNotificationGeneratorJob,
+      Decidim::NotificationGeneratorJob,
       ActiveStorage::AnalyzeJob
     ]
   end
