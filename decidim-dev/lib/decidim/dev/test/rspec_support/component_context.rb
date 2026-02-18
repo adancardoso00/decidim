@@ -150,7 +150,7 @@ shared_context "when publishing and unpublishing the component" do
 
       perform_enqueued_jobs(except: job_exceptions)
       sleep(2)
-      
+
       expect(Decidim::SearchableResource.where(resource:).count).to be_positive
       expect(component.reload).to be_published
     end
