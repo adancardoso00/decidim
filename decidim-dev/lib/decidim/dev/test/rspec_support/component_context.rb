@@ -148,6 +148,8 @@ shared_context "when publishing and unpublishing the component" do
 
       perform_enqueued_jobs(except: job_exceptions)
 
+      pp [enqueued_jobs, resource] if Decidim::SearchableResource.where(resource:).count.zero?
+
       expect(Decidim::SearchableResource.where(resource:).count).to be_positive
       expect(component.reload).to be_published
     end
@@ -163,6 +165,8 @@ shared_context "when publishing and unpublishing the component" do
 
     it "removes records from index" do
       perform_enqueued_jobs(except: job_exceptions)
+
+      pp [enqueued_jobs, resource] if Decidim::SearchableResource.where(resource:).count.zero?
 
       expect(Decidim::SearchableResource.where(resource:).count).to be_positive
 
